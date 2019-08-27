@@ -9,6 +9,7 @@ const moment = require('moment')
 const helmet = require('helmet')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./models')
+const axios = require('axios')
 
 // Instantiate the express app
 const app = express();
@@ -51,9 +52,11 @@ app.use((req, res, next) => {
 // Controllers
 app.use('/auth', require('./controllers/auth'));
 app.use('/profile', require('./controllers/profile'))
+app.use('/search', require('./controllers/search'))
 
 // Routes
 app.get('/', (req, res) => {
+  //To do: get a slideshow of the "isHighlight" images from the met API
     res.render('home');
 })
 

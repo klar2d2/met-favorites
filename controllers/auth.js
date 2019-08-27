@@ -21,7 +21,6 @@ router.post('/signup', (req, res, next) => {
     })
     .spread((user, wasCreated) => {
       if (wasCreated) {
-        console.log("brand new user, about to authenticate")
         // This was legitimately a new user, so they got created
         passport.authenticate('local', {
           successRedirect: '/profile',
@@ -64,9 +63,9 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/profile',
-  successFlash: 'Yay you logged in successfully!',
+  successFlash: 'Log in successful',
   failureRedirect: '/auth/login',
-  failureFlash: 'Invalid Credentials!'
+  failureFlash: 'Invalid Credentials'
 }));
 
 router.get('/logout', (req, res) => {
