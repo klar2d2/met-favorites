@@ -1,0 +1,18 @@
+<h1 class="banner">Admin</h1>
+
+<h1><%= currentUser.firstname %>'s Admin page</h1>
+
+<div class="container">
+  <div class="left">
+    <img src="<%= currentUser.profile %>" alt"user profile pic">
+    <p><strong>Name: </strong> <%= currentUser.firstname %> <%= currentUser.lastname %></p>
+    <p><strong>Admin: </strong><%= currentUser.admin ? 'Yes' : 'No'%></p>
+  </div>
+  <div class="right">
+    <p>
+      <%= currentUser.firstname %> was born on <%= moment(currentUser.birthday).format('MMM Do YYYY') %> and uses the display name <%= currentUser.username %>
+    </p>
+    <hr>
+    <%= currentUser.bio %>
+  </div>
+</div>
