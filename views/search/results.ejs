@@ -1,0 +1,7 @@
+<% Object.keys(result).forEach(objId => { %>
+  <div class="artwork-container">
+    <a href="/search/results/<%= result[objId].objectID%>">
+      <img src="<%= result[objId].primaryImage %>" alt="<%= result[objId].title %>">
+    </a>
+  </div>
+<% }) %>
