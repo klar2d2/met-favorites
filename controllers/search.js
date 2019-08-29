@@ -5,6 +5,7 @@ process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser
 // const fetch = require('node-fetch')
 const axios = require('axios')
 const async = require('async')
+const db = require('../models')
 
 
 
@@ -40,19 +41,36 @@ router.get('/results', (req, res) => {
       console.log("err", err)
       res.render('404')
     })
-
 })
-
-
-
 
 router.get('/results/:id', (req, res) => {
-  console.log(req.params.id)
-  res.send('stub')
+  axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${req.params.id}`)
+  .then(response => {
+    res.render('search/showOne', { artwork: response.data })
+  }).catch((err) => {
+    console.log("err", err)
+    res.render('404')
+  })
 })
 
-router.post('/router', (req, res) => {
+router.post('/results', (req, res) => {
   // TODO allow the user to add a work to their collection. Flash an update and return to the ID page
+  db.user.findByPk(req.user.id)
+    .then((user) => { db.artwork.findOrCreate({
+      where: {objectID: req.body.objectID},
+      defaults: req.body
+    })
+    .spread((artwork, wasCreated) => {
+      user.addArtwork(artwork)
+      console.log('added Artwork')
+    })
+    .then((artwork) => {
+      res.redirect(`/search/results/${req.body.objectID}`)
+    }).catch((err) =>  {
+      console.log('err', err)
+      res.render('404')
+    })
+  })
 })
 
 module.exports = router

@@ -1,0 +1,20 @@
+<div class="individual-artwork">
+  <h1><%= artwork.title %></h1>
+  <img src="<%= artwork.primaryImage %>" alt="<%= artwork.title %>">
+  <p><%= artwork.artistDisplayName %></p>
+  <p><%= artwork.artistDisplayBio %></p>
+  <% if (artwork.isOnView) { %>
+    <p>Currently On Display</p>
+  <% } else {%>
+    <p>Not Currently On Display</p>
+  <% } %>
+</div>
+
+<form class="" action="/search/results" method="post">
+  <input type="hidden" name="objectID" value="<%= artwork.objectID %>">
+  <input type="hidden" name="image" value="<%= artwork.primaryImage %>">
+  <input type="hidden" name="title" value="<%= artwork.title %>">
+  <input type="hidden" name="artist" value="<%= artwork.artistDisplayName %>">
+  <input type="hidden" name="date" value="<%= artwork.objectDate %>">
+  <input type="submit" name="" value="Add To Collection">
+</form>
