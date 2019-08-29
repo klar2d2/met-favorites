@@ -2,10 +2,16 @@
 <html>
     <head>
         <title>MET Curations</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">\
+        <!-- <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">\ -->
     </head>
     <body>
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('select')
+        var instances = M.FormSelect.init(elems, options)
+      })
+      </script>
         <% include ./partials/header %>
         <div class="container">
           <% include ./partials/alerts %>
@@ -13,5 +19,6 @@
         </div>
         <% include ./partials/footer %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     </body>
 </html>

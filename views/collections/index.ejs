@@ -1,0 +1,9 @@
+<h1>Collections</h1>
+<% if(user && user.collections) {%>
+  <% user.collections.forEach(collection => { %>
+    <h2><%= collection.name %></h2>
+    <a href="/collection/<%= collection.id %>">
+      <img src="<%= collection.image %>" alt="<%= collection.name %>">
+    </a>
+  <% }) %>
+<% } %>

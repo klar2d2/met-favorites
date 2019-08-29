@@ -1,13 +1,13 @@
-<h1><%= currentUser.firstname %>'s Curations</h1>
+<h1><%= user.firstname %>'s Curations</h1>
 
 <div class="container">
   <div>
-    <img src="<%= currentUser.profile %>" alt"user profile pic">
-    <p><strong>Name: </strong> <%= currentUser.firstname %> <%= currentUser.lastname %></p>
-    <!-- <p><strong>Admin: </strong><%= currentUser.admin ? 'Yes' : 'No'%></p> -->
+    <img src="<%= user.profile %>" alt"user profile pic">
+    <p><strong>Name: </strong> <%= user.firstname %> <%= user.lastname %></p>
+    <!-- <p><strong>Admin: </strong><%= user.admin ? 'Yes' : 'No'%></p> -->
   </div>
   <div>
     <hr>
-    <%= currentUser.bio %>
+    <%= user.bio %>
   </div>
 </div>

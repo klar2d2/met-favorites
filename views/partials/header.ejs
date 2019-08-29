@@ -1,8 +1,8 @@
 <nav>
     <ul>
-      <% if (currentUser && currentUser.firstname) {%>
+      <% if (user && user.firstname) {%>
         <li>
-          <a href="/profile">Welcome Back, <%= currentUser.firstname %>!</a>
+          <a href="/profile">Welcome Back, <%= user.firstname %>!</a>
         </li>
       <% } %>
         <li>
@@ -10,11 +10,11 @@
         </li>
     </ul>
     <ul>
-      <% if (currentUser) {%>
+      <% if (user) {%>
         <li>
             <a href="/profile">Profile</a>
         </li>
-        <% if(currentUser.admin) {%>
+        <% if(user.admin) {%>
           <li>
             <a href="/profile/admin">Admin Profile</a>
           </li>

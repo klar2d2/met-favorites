@@ -1,14 +1,14 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('usersArtworks', {
+    return queryInterface.createTable('collectionsArtworks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      collectionId: {
         type: Sequelize.INTEGER
       },
       artworkId: {
@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('usersArtworks');
+    return queryInterface.dropTable('collectionsArtworks');
   }
 };

@@ -10,6 +10,9 @@ const helmet = require('helmet')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./models')
 const axios = require('axios')
+const methodOverride = require('method-override')
+const isLoggedIn = require('./middleware/isLoggedIn')
+
 
 // Instantiate the express app
 const app = express();
@@ -20,6 +23,8 @@ app.use(layouts);
 app.use(express.static('static'));
 app.use(express.urlencoded({ extended: false }));
 app.use(helmet())
+app.use(methodOverride('_method'))
+
 
 // Custom middleware: write data to locals for EVERY page
 // Make this before the session
@@ -44,15 +49,16 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   res.locals.alerts = req.flash();
-  res.locals.currentUser = req.user
+  res.locals.user = req.user
   next();
 });
 
 
 // Controllers
 app.use('/auth', require('./controllers/auth'));
-app.use('/profile', require('./controllers/profile'))
+app.use('/profile', isLoggedIn, require('./controllers/profile'))
 app.use('/search', require('./controllers/search'))
+app.use('/collection', isLoggedIn, require('./controllers/collection'))
 
 // Routes
 app.get('/', (req, res) => {

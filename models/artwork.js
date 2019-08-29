@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   artwork.associate = function(models) {
     // associations can be defined here
-    models.artwork.belongsToMany(models.user, { through: 'usersArtworks' })
+    models.artwork.belongsToMany(models.collection, { through: 'collectionsArtworks' })
   };
   return artwork;
 };

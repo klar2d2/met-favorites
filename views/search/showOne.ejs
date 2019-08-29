@@ -1,3 +1,4 @@
+<!-- Here, artwork defines an artwork that is being drawn from the MET API, not the DB -->
 <div class="individual-artwork">
   <h1><%= artwork.title %></h1>
   <img src="<%= artwork.primaryImage %>" alt="<%= artwork.title %>">
@@ -10,11 +11,30 @@
   <% } %>
 </div>
 
-<form class="" action="/search/results" method="post">
+<% if (goodCollections && isUserLoggedIn) {%>
+<form name="existing-collection" action="/search/results" method="post">
+  <div class="input-field">
+    <select class=""name="userCollections">
+        <% goodCollections.forEach(collection => { %>
+          <option value="<%= collection.id %>"><%= collection.name%></option>
+        <% })%>
+    </select>
+  </div>
+
   <input type="hidden" name="objectID" value="<%= artwork.objectID %>">
   <input type="hidden" name="image" value="<%= artwork.primaryImage %>">
   <input type="hidden" name="title" value="<%= artwork.title %>">
   <input type="hidden" name="artist" value="<%= artwork.artistDisplayName %>">
   <input type="hidden" name="date" value="<%= artwork.objectDate %>">
-  <input type="submit" name="" value="Add To Collection">
+  <input type="submit" value="Add To Collection">
+</form>
+<% } %>
+
+<h1>Start A New Collection</h1>
+<form name="new-collection" class="" action="/collection" method="post">
+  <input type="text" name="name" placeholder="Collection Name">
+  <input type="hidden" name="image" value="<%= artwork.primaryImage %>">
+  <input type="hidden" name="objectId" value="<%= artwork.objectID %>">
+  <textarea name="description" rows="8" cols="80" placeholder="Describe Your Collection..."></textarea>
+  <input type="submit" name="" value="Create Collection">
 </form>

@@ -25,6 +25,7 @@
     "helmet": "^3.20.0",
     "http-parser": "^1.0.3",
     "http-parser-js": "^0.5.1",
+    "method-override": "^3.0.0",
     "node": "^11.1.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

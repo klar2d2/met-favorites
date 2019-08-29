@@ -2,10 +2,11 @@
 const express = require('express');
 const router = express.Router();
 process.binding('http_parser').HTTPParser = require('http-parser-js').HTTPParser;
-// const fetch = require('node-fetch')
 const axios = require('axios')
 const async = require('async')
 const db = require('../models')
+const isLoggedIn = require('../middleware/isLoggedIn')
+
 
 
 
@@ -33,7 +34,6 @@ router.get('/results', (req, res) => {
           cb()
         })
       }, () => { //argument 3 for the async foreach
-        console.log('All done', result)
         res.render('search/results', {result})
       }); // END OF FOREACH
 
@@ -46,24 +46,49 @@ router.get('/results', (req, res) => {
 router.get('/results/:id', (req, res) => {
   axios.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${req.params.id}`)
   .then(response => {
-    res.render('search/showOne', { artwork: response.data })
+    db.collection.findAll({
+      where:{userId:req.user.id},
+    })
+    .then(collections => {
+      let isUserLoggedIn = req.user?true:false
+      let goodCollections = collections.map(item => {
+        return item.dataValues
+      })
+      console.log(goodCollections)
+
+      res.render('search/showOne', { artwork: response.data, goodCollections, isUserLoggedIn})
+
+    })
   }).catch((err) => {
     console.log("err", err)
     res.render('404')
   })
 })
 
-router.post('/results', (req, res) => {
+router.post('/results', isLoggedIn, (req, res) => {
   // TODO allow the user to add a work to their collection. Flash an update and return to the ID page
-  db.user.findByPk(req.user.id)
-    .then((user) => { db.artwork.findOrCreate({
-      where: {objectID: req.body.objectID},
-      defaults: req.body
-    })
-    .spread((artwork, wasCreated) => {
-      user.addArtwork(artwork)
-      console.log('added Artwork')
-    })
+  db.collection.findOne({where:{id: req.body.userCollections}})
+    .then((collection) => {
+      db.artwork.findOrCreate({
+        where: {objectID: req.body.objectID},
+        defaults: {
+        objectID: req.body.objectID,
+        image: req.body.image,
+        title: req.body.title,
+        artist: req.body.artist,
+        date: req.body.date
+      }
+      })
+      .spread((artwork, wasCreated) => {
+        console.log('spread')
+        collection.addArtwork(artwork)
+        .catch(err => {
+          console.log("errart", err)
+        })
+      })
+      .catch(err => {
+        console.log('Err', err)
+      })
     .then((artwork) => {
       res.redirect(`/search/results/${req.body.objectID}`)
     }).catch((err) =>  {
