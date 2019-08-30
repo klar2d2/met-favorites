@@ -5,11 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     title: DataTypes.STRING,
     artist: DataTypes.STRING,
-    date: DataTypes.INTEGER
+    date: DataTypes.STRING
   }, {});
   artwork.associate = function(models) {
     // associations can be defined here
-    models.artwork.belongsToMany(models.collection, { through: 'collectionsArtworks' })
   };
   return artwork;
 };

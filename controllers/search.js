@@ -54,8 +54,6 @@ router.get('/results/:id', (req, res) => {
       let goodCollections = collections.map(item => {
         return item.dataValues
       })
-      console.log(goodCollections)
-
       res.render('search/showOne', { artwork: response.data, goodCollections, isUserLoggedIn})
 
     })
@@ -72,15 +70,14 @@ router.post('/results', isLoggedIn, (req, res) => {
       db.artwork.findOrCreate({
         where: {objectID: req.body.objectID},
         defaults: {
-        objectID: req.body.objectID,
-        image: req.body.image,
-        title: req.body.title,
-        artist: req.body.artist,
-        date: req.body.date
-      }
+          objectID: req.body.objectID,
+          image: req.body.image,
+          title: req.body.title,
+          artist: req.body.artist,
+          date: req.body.date
+        }
       })
       .spread((artwork, wasCreated) => {
-        console.log('spread')
         collection.addArtwork(artwork)
         .catch(err => {
           console.log("errart", err)

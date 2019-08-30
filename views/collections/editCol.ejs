@@ -1,0 +1,8 @@
+<h1>Edit <%= collection.name %></h1>
+
+<form action="<%= collection.id %>?_method=PUT" method="post">
+  <input type="text" name="name" value="<%= collection.name%>">
+  <input type="text" name="description" value="<%= collection.description%>">
+  <input type="text" name="image" value="<%= collection.image%>">
+  <input type="submit" value="Submit Changes">
+</form>

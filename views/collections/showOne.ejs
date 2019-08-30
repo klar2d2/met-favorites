@@ -1,0 +1,16 @@
+<h1><%= collection.name%></h1>
+<% if (collection.artworks) { %>
+  <div>
+    <% collection.artworks.forEach(artwork => { %>
+      <h2><%= artwork.title %></h2>
+      <img src="<%= artwork.image %>" alt="<%= artwork.title %>">
+      <p><%= artwork.artist %></p>
+      <p><%= artwork.date %></p>
+  </div>
+  <form action="/collection/artwork/<%= collection.id %>?_method=DELETE" method="POST">
+    <input type="hidden" name="artworkId" value="<%= artwork.id %>">
+    <input type="hidden" name="collectionId" value="<%= collection.id%>">
+    <input type="submit" name="" value="Remove From Collection">
+  </form>
+  <% }) %>
+<% } %>

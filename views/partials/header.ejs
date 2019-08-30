@@ -1,26 +1,23 @@
+
 <nav>
-    <ul>
-      <% if (user && user.firstname) {%>
-        <li>
-          <a href="/profile">Welcome Back, <%= user.firstname %>!</a>
-        </li>
-      <% } %>
+    <ul class="nav-left">
         <li>
             <a href="/">Home</a>
         </li>
     </ul>
-    <ul>
+    <ul class="nav-right">
       <% if (user) {%>
         <li>
             <a href="/profile">Profile</a>
         </li>
-        <% if(user.admin) {%>
-          <li>
-            <a href="/profile/admin">Admin Profile</a>
-          </li>
-        <% } %>
         <li>
             <a href="/auth/logout">Log out</a>
+        </li>
+        <li>
+          <a href="/collection">Collections</a>
+        </li>
+        <li>
+          <a href="/search">Search</a>
         </li>
         <% } else {%>
         <li>
@@ -32,23 +29,3 @@
         <% } %>
     </ul>
 </nav>
-
-<nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
-  </ul>
