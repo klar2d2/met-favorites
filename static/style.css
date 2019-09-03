@@ -1,3 +1,23 @@
+body {
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.home {
+  text-align: center;
+  font-family: 'Amatic SC', cursive;
+
+}
+
+img {
+  height: 400px;
+  width: 40%;
+  justify-content: center;
+}
+.artwork-container {
+  text-align: center;
+  border: 2px solid black;
+}
 
 nav {
   height: 15vh;
@@ -7,6 +27,7 @@ nav {
   font-weight: bold;
   text-decoration: none;
 }
+
 .nav-right {
   float: right;
 }
@@ -19,6 +40,7 @@ nav {
 a {
   text-decoration: none;
 }
+
 a, a:visited, a:hover, a:active {
   color: inherit;
 }
@@ -31,4 +53,30 @@ li {
   margin: 0 20px;
   display: inline-block;
   justify-content: space-around;
+}
+
+.new-collection {
+  text-align: center;
+}
+
+select {
+  margin: 10px;
+}
+
+.col-sub {
+  margin-bottom: 15px;
+}
+
+.col-header {
+  font-size: 50px;
+  text-align: center;
+}
+
+.search-form {
+  text-align: center;
+}
+
+.text-search {
+  width: 80%;
+  height: 20px;
 }

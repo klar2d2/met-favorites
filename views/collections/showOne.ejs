@@ -1,6 +1,6 @@
 <h1><%= collection.name%></h1>
 <% if (collection.artworks) { %>
-  <div>
+  <div class="artwork-container">
     <% collection.artworks.forEach(artwork => { %>
       <h2><%= artwork.title %></h2>
       <img src="<%= artwork.image %>" alt="<%= artwork.title %>">

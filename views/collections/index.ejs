@@ -1,17 +1,20 @@
-<h1>Collections</h1>
+
+<h1 class="col-header"><%= user.firstname %>'s Collections</h1>
 <% if(goodCollections && isUserLoggedIn) {%>
   <% goodCollections.forEach(collection => { %>
-    <h2><%= collection.name %></h2>
-    <a href="/collection/<%= collection.id %>">
-      <img src="<%= collection.image %>" alt="<%= collection.name %>">
-    </a>
-    <form action="/collection/delete/<%= collection.id %>" method="get">
-      <input type="hidden" name="" value="<%= collection.id %>">
-      <input type="submit" value="Delete Collection">
-    </form>
-    <form action="/collection/edit/<%= collection.id %>" method="get">
-      <input type="hidden" name="" value="<%= collection.id %>">
-      <input type="submit" value="Update Collection Details">
-    </form>
+    <div class="artwork-container">
+      <h2><%= collection.name %></h2>
+      <a href="/collection/<%= collection.id %>">
+        <img src="<%= collection.image %>" alt="<%= collection.name %>">
+      </a>
+      <form action="/collection/delete/<%= collection.id %>" method="get">
+        <input type="hidden" name="" value="<%= collection.id %>">
+        <input type="submit" value="Delete Collection">
+      </form>
+      <form action="/collection/edit/<%= collection.id %>" method="get">
+        <input type="hidden" name="" value="<%= collection.id %>">
+        <input type="submit" value="Update Collection Details">
+      </form>
+    </div>
   <% }) %>
 <% } %>
