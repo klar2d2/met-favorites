@@ -23,7 +23,7 @@ router.post('/signup', (req, res, next) => {
       if (wasCreated) {
         // This was legitimately a new user, so they got created
         passport.authenticate('local', {
-          successRedirect: '/profile',
+          successRedirect: '/collection',
           successFlash: 'Successful sign up. Welcome!',
           failureRedirect: '/auth/login',
           failureFlash: 'This should never happen. Contact administrator.'
@@ -62,7 +62,7 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
+  successRedirect: '/collection',
   successFlash: 'Log in successful',
   failureRedirect: '/auth/login',
   failureFlash: 'Invalid Credentials'

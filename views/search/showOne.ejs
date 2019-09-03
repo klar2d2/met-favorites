@@ -33,10 +33,12 @@
 <div class="new-collection">
   <h1>Start A New Collection</h1>
   <form name="new-collection" action="/collection" method="post">
-    <input type="text" name="name" placeholder="Collection Name">
+    <input class="col-name" type="text" name="name" placeholder="Collection Name">
+    <br>
     <input type="hidden" name="image" value="<%= artwork.primaryImage %>">
     <input type="hidden" name="objectId" value="<%= artwork.objectID %>">
     <textarea name="description" rows="8" cols="80" placeholder="Describe Your Collection..."></textarea>
+    <br>
     <input type="submit" name="" value="Create Collection">
   </form>
 </div>
